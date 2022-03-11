@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('./Nav.ejs') %>
+        <table class="table table-hover mt-5" style="width: 90%; margin: auto;">
+            <thead class="text-center" style="background-color: rgb(210, 169, 248);">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Father Name</th>
+                    <th scope="col">Mother Name</th>
+                    <th scope="col">Date of Birth</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Policy Number</th>
+                    <th scope="col">Policy Date</th>
+                    <th scope="col">Curent Address</th>
+                    <th scope="col">Permanent Address</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <% if(records.length>0){ %>
+                    <% records.forEach(function(info){ %>
+                        <tr>
+                            <td>
+                                <%= info.uname %>
+                            </td>
+                            <td>
+                                <%= info.fname %>
+                            </td>
+                            <td>
+                                <%= info.mname %>
+                            </td>
+                            <td>
+                                <%= info.dob %>
+                            </td>
+                            <td>
+                                <%= info.phone %>
+                            </td>
+                            <td>
+                                <%= info.policynumber %>
+                            </td>
+                            <td>
+                                <%= info.policydate %>
+                            </td>
+                            <td>
+                                <%= info.caddress %>
+                            </td>
+                            <td>
+                                <%= info.paddress %>
+                            </td>
+                            <td><a href="/edit/<%= info._id %>" style="color: rgb(12, 12, 12);"><i class="fa fa-edit"
+                                        aria-hidden="true"></i></a></td>
+                            <td><a href="/delete/<%= info._id %>" style="color: rgb(12, 12, 12);"><i class="fa fa-trash"
+                                        aria-hidden="true"></i></a></td>
+                        </tr>
+                        <% })} else{ %>
+                            <tr>
+                                <td>
+                                    <i class='fas fa-frown'></i> Sorry No Result Found
+                                </td>
+                            </tr>
+                            <% } %>
+            </tbody>
+        </table>
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://t3.ftcdn.net/jpg/03/26/34/96/240_F_326349650_Wi2twHswE8JIkPfjfNc5hWjQZKbTdtpz.jpg"
+        sizes="16x16">
+    <title>To-Do</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
+    <style>
+        .Homepage {
+            background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+            height: 100%;
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            width: 60%;
+            margin: auto;
+            background-color: rgb(241, 255, 255) !important;
+            margin-bottom: 50px;
+        }
+
+        /* font-family: 'PT Sans Narrow', sans-serif; */
+    </style>
+</head>
+
+<body>
+    <div class="Homepage">
+            <!-- Material form login -->
+            <div class="card pb-3 pt-5">
+
+                <h5 class="card-header info-color white-text text-center py-4">
+                    <strong>Register Here</strong>
+                </h5>
+                
+                <!--Card content-->
+                <div class="card-body px-lg-5 pt-4">
+
+                    <!-- Form -->
+                    <form method="post" class="text-center" style="color: #757575;" action="/update">
+                        <input type="hidden" name="id" value="<%= list._id %>"
+                        <!-- Name -->
+                        <div class="md-form">
+                            <input type="text" id="uname" name="uname" class="form-control" value="<%= list.uname %>">
+                            <label for="uname">Name</label>
+                        </div>
+                        <!-- Father Name -->
+                        <div class="md-form">
+                            <input type="text" id="fname" name="fname" class="form-control" value="<%= list.fname %>">
+                            <label for="fname">Father Name</label>
+                        </div>
+                        <!--Mother Name-->
+                        <div class="md-form">
+                            <input type="text" id="mname" name="mname" class="form-control" value="<%= list.mname %>">
+                            <label for="mname">Mother Name</label>
+                        </div>
+                        <!-- Date of Birth -->
+                        <div class="md-form">
+                            <input type="text" id="dob" name="dob" class="form-control" value="<%= list.dob %>">
+                            <label for="dob">Date of Birth</label>
+                        </div>
+                        <!-- Phone Number -->
+                        <div class="md-form">
+                            <input type="text" id="phone" name="phone" class="form-control" value="<%= list.phone %>">
+                            <label for="phone">Phone Number</label>
+                        </div>
+                        <!-- Policy Number -->
+                        <div class="md-form">
+                            <input type="text" id="policynumber" name="policynumber" class="form-control" value="<%= list.policynumber %>" >
+                            <label for="policynumber">Policy Number</label>
+                        </div>
+                        <!-- Policy Date -->
+                        <div class="md-form">
+                            <input type="text" id="policydate" name="policydate" class="form-control" value="<%= list.policydate %>">
+                            <label for="policydate">Policy Date</label>
+                        </div>
+                        <!-- Current Address -->
+                        <div class="md-form">
+                            <input type="text" id="caddress" name="caddress" class="form-control" value="<%= list.caddress %>">
+                            <label for="caddress">Current Address</label>
+                        </div>
+                        <!-- Permanent Address -->
+                        <div class="md-form">
+                            <input type="text" id="paddress" name="paddress" class="form-control" value="<%= list.paddress %>">
+                            <label for="paddress">Permanent Address</label>
+                        </div>
+                        <!-- Permanent Address -->
+                        <!-- <div class="md-form">
+                            <input type="file" id="materialLoginFormImage" class="form-control" style="background-color: rgb(243, 243, 252); padding: 5px;">
+                        </div> -->
+
+                        <!-- Regsiter button -->
+                        <div class="mx-auto">
+                            <a href="/Search"><button type="button" class="btn btn-primary btn-rounded z-depth-0" data-mdb-ripple-color="dark">Close</button></a>
+                            <a href="/Search"><button type="submit" class="btn btn-primary btn-rounded z-depth-0" data-mdb-ripple-color="dark">Update</button></a>
+                        </div>
+                    </form>
+                    <!-- Form -->
+                </div>
+            </div>
+    </div>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+</body>
+
+</html>
