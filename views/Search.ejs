@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta policynumber="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -15,70 +15,161 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
+    <style>
+        /* ============== Filter Form ============== */
+
+        .filter-form {
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            width: 70%;
+            margin: auto;
+            border-radius: 5px;
+            margin-top: 70px;
+        }
+
+        @media (max-width:956px) {
+            .filter-form {
+                width: 80%;
+            }
+        }
+
+        @media (max-width:656px) {
+            .filter-form {
+                width: 95%;
+            }
+        }
+
+        .filter-form .serach-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 550;
+            color: rgba(0, 0, 0, 0.705);
+        }
+
+        .form-group {
+            padding: 10px;
+        }
+
+        .filter-btn {
+            padding: 7px 20px;
+            background-color: rgb(121, 98, 253);
+            color: white;
+            font-family: 550;
+            border: none;
+            margin-top: 10px;
+            margin-left: 10px;
+            border-radius: 5px;
+        }
+
+        .filter-btn:hover {
+            background-color: rgb(78, 89, 248);
+        }
+
+        .not-found {
+            text-align: center;
+            font-size: 30px;
+            color: rgba(255, 255, 255, 0.712);
+            margin-bottom: 40px;
+        }
+        .table{
+            width: 95% !important;
+        }
+    </style>
 </head>
 
 <body>
     <%- include('./Nav.ejs') %>
-        <table class="table table-hover mt-5" style="width: 90%; margin: auto;">
-            <thead class="text-center" style="background-color: rgb(210, 169, 248);">
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Father Name</th>
-                    <th scope="col">Mother Name</th>
-                    <th scope="col">Date of Birth</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Policy Number</th>
-                    <th scope="col">Policy Date</th>
-                    <th scope="col">Curent Address</th>
-                    <th scope="col">Permanent Address</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
-                </tr>
-            </thead>
-            <tbody class="text-center">
-                <% if(records.length>0){ %>
-                    <% records.forEach(function(info){ %>
-                        <tr>
-                            <td>
-                                <%= info.uname %>
-                            </td>
-                            <td>
-                                <%= info.fname %>
-                            </td>
-                            <td>
-                                <%= info.mname %>
-                            </td>
-                            <td>
-                                <%= info.dob %>
-                            </td>
-                            <td>
-                                <%= info.phone %>
-                            </td>
-                            <td>
-                                <%= info.policynumber %>
-                            </td>
-                            <td>
-                                <%= info.policydate %>
-                            </td>
-                            <td>
-                                <%= info.caddress %>
-                            </td>
-                            <td>
-                                <%= info.paddress %>
-                            </td>
-                            <td><a href="/edit/<%= info._id %>" style="color: rgb(12, 12, 12);"><i class="fa fa-edit"
-                                        aria-hidden="true"></i></a></td>
-                            <td><a href="/delete/<%= info._id %>" style="color: rgb(12, 12, 12);"><i class="fa fa-trash"
-                                        aria-hidden="true"></i></a></td>
-                        </tr>
-                        <% })} else{ %>
+        <!-- ================ Filter Form ================-->
+
+        <div class="filter-form p-3 mb-5">
+            <div class="serach-title">
+                <p>Find Your User <i class="fa fa-search"></i></p>
+            </div>
+            <hr>
+            <div class="form">
+                <form action="/find" method="POST">
+                    <div class="row col-lg-12 col-md-12 col-12">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label for="policynumber" class="pb-1">Policy Number</label>
+                                <input type="text" id="policynumber" name="policynumber" class="form-control"
+                                    placeholder="Filter With Policy Number" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label for="phone" class="pb-1">Phone Number</label>
+                                <input type="city" id="phone" name="phone" class="form-control"
+                                    placeholder="Filter With Phone Number" />
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="filter-btn btn-block">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- ================ End of Filter Form =============== -->
+        <table class="table table-hover mt-5 mb-5 mx-auto">
+                    <thead class="text-center" style="background-color: rgb(210, 169, 248);">
+                        <% if(records.length>0){ %>
                             <tr>
-                                <td>
-                                    <i class='fas fa-frown'></i> Sorry No Result Found
-                                </td>
+                                <th scope="col">Name</th>
+                                <th scope="col">Father Name</th>
+                                <th scope="col">Mother Name</th>
+                                <th scope="col">Date of Birth</th>
+                                <th scope="col">Phone Number</th>
+                                <th scope="col">Policy Number</th>
+                                <th scope="col">Policy Date</th>
+                                <th scope="col">Curent Address</th>
+                                <th scope="col">Permanent Address</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
                             </tr>
                             <% } %>
-            </tbody>
+                    </thead>
+                    <tbody class="text-center mx-auto">
+                        <% if(records.length>0){ %>
+                            <% records.forEach(function(info){ %>
+                                <tr>
+                                    <td>
+                                        <%= info.uname %>
+                                    </td>
+                                    <td>
+                                        <%= info.fname %>
+                                    </td>
+                                    <td>
+                                        <%= info.mname %>
+                                    </td>
+                                    <td>
+                                        <%= info.dob %>
+                                    </td>
+                                    <td>
+                                        <%= info.phone %>
+                                    </td>
+                                    <td>
+                                        <%= info.policynumber %>
+                                    </td>
+                                    <td>
+                                        <%= info.policydate %>
+                                    </td>
+                                    <td>
+                                        <%= info.caddress %>
+                                    </td>
+                                    <td>
+                                        <%= info.paddress %>
+                                    </td>
+                                    <td><a href="/edit/<%= info._id %>" style="color: rgb(12, 12, 12);"><i
+                                                class="fa fa-edit" aria-hidden="true"></i></a></td>
+                                    <td><a href="/delete/<%= info._id %>" style="color: rgb(12, 12, 12);"><i
+                                                class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                </tr>
+                                <% })} else{ %>
+                                    <h3 style="text-align: right;"><i class='fas fa-frown'></i> Sorry No Result Found
+                                    </h3>
+                                    <% } %>
+                    </tbody>
         </table>
 
         <!-- JQuery -->

@@ -31,7 +31,6 @@
         }
 
         .card {
-            width: 60%;
             margin: auto;
             background-color: rgb(241, 255, 255) !important;
             margin-top: 100px;
@@ -46,80 +45,87 @@
     <div class="Homepage">
         <%- include('./Nav.ejs') %>
             <!-- Material form login -->
-            <div class="card pb-3">
+            <div class="row mx-auto">
+                <div class="col-lg-7 col-md-8 col-11 mx-auto">
+                    <div class="card pb-3">
+                        <h5 class="card-header info-color white-text text-center py-4">
+                            <strong>Register Here</strong>
+                        </h5>
 
-                <h5 class="card-header info-color white-text text-center py-4">
-                    <strong>Register Here</strong>
-                </h5>
-                
-                <!--Card content-->
-                <div class="card-body px-lg-5 pt-4">
-                  
-                    <%- include('./partials/messages') %>
+                        <!--Card content-->
+                        <div class="card-body px-lg-5 pt-4">
 
-                    <!-- Form -->
-                    <form method="post" class="text-center" style="color: #757575;" action="/">
+                            <%- include('./partials/messages') %>
 
-                        <!-- Name -->
-                        <div class="md-form">
-                            <input type="text" id="uname" name="uname" class="form-control">
-                            <label for="uname">Name</label>
-                        </div>
-                        <!-- Father Name -->
-                        <div class="md-form">
-                            <input type="text" id="fname" name="fname" class="form-control">
-                            <label for="fname">Father Name</label>
-                        </div>
-                        <!--Mother Name-->
-                        <div class="md-form">
-                            <input type="text" id="mname" name="mname" class="form-control">
-                            <label for="mname">Mother Name</label>
-                        </div>
-                        <!-- Date of Birth -->
-                        <div class="md-form">
-                            <input type="text" id="dob" name="dob" class="form-control">
-                            <label for="dob">Date of Birth</label>
-                        </div>
-                        <!-- Phone Number -->
-                        <div class="md-form">
-                            <input type="text" id="phone" name="phone" class="form-control">
-                            <label for="phone">Phone Number</label>
-                        </div>
-                        <!-- Policy Number -->
-                        <div class="md-form">
-                            <input type="text" id="policynumber" name="policynumber" class="form-control">
-                            <label for="policynumber">Policy Number</label>
-                        </div>
-                        <!-- Policy Date -->
-                        <div class="md-form">
-                            <input type="text" id="policydate" name="policydate" class="form-control">
-                            <label for="policydate">Policy Date</label>
-                        </div>
-                        <!-- Current Address -->
-                        <div class="md-form">
-                            <input type="text" id="caddress" name="caddress" class="form-control">
-                            <label for="caddress">Current Address</label>
-                        </div>
-                        <!-- Permanent Address -->
-                        <div class="md-form">
-                            <input type="text" id="paddress" name="paddress" class="form-control">
-                            <label for="paddress">Permanent Address</label>
-                        </div>
-                        <!-- Permanent Address -->
-                        <!-- <div class="md-form">
+                                <!-- Form -->
+                                <form method="post" class="text-center" style="color: #757575;" action="/">
+
+                                    <!-- Name -->
+                                    <div class="md-form">
+                                        <input type="text" id="uname" name="uname" class="form-control">
+                                        <label for="uname">Name</label>
+                                    </div>
+                                    <!-- Father Name -->
+                                    <div class="md-form">
+                                        <input type="text" id="fname" name="fname" class="form-control">
+                                        <label for="fname">Father Name</label>
+                                    </div>
+                                    <!--Mother Name-->
+                                    <div class="md-form">
+                                        <input type="text" id="mname" name="mname" class="form-control">
+                                        <label for="mname">Mother Name</label>
+                                    </div>
+                                    <!-- Date of Birth -->
+                                    <div class="md-form">
+                                        <input type="text" id="dob" name="dob" class="form-control">
+                                        <label for="dob">Date of Birth</label>
+                                    </div>
+                                    <!-- Phone Number -->
+                                    <div class="md-form">
+                                        <input type="text" id="phone" name="phone" class="form-control">
+                                        <label for="phone">Phone Number</label>
+                                    </div>
+                                    <!-- Policy Number -->
+                                    <div class="md-form">
+                                        <input type="text" id="policynumber" name="policynumber" class="form-control">
+                                        <label for="policynumber">Policy Number</label>
+                                    </div>
+                                    <!-- Policy Date -->
+                                    <div class="md-form">
+                                        <input type="text" id="policydate" name="policydate" class="form-control">
+                                        <label for="policydate">Policy Date</label>
+                                    </div>
+                                    <!-- Current Address -->
+                                    <div class="md-form">
+                                        <input type="text" id="caddress" name="caddress" class="form-control">
+                                        <label for="caddress">Current Address</label>
+                                    </div>
+                                    <!-- Permanent Address -->
+                                    <div class="md-form">
+                                        <input type="text" id="paddress" name="paddress" class="form-control">
+                                        <label for="paddress">Permanent Address</label>
+                                    </div>
+                                    <!-- Permanent Address -->
+                                    <!-- <div class="md-form">
                             <input type="file" id="materialLoginFormImage" class="form-control" style="background-color: rgb(243, 243, 252); padding: 5px;">
                         </div> -->
 
-                        <!-- Regsiter button -->
-                        <div class="mx-auto">
-                            <a href="/Search"><button type="submit" class="btn btn-primary btn-rounded z-depth-0 "
-                                    style="width: 100%; margin: auto;" data-mdb-ripple-color="dark">Regsiter</button></a>
+                                    <!-- Regsiter button -->
+                                    <div class="mx-auto">
+                                        <a href="/Search"><button type="submit"
+                                                class="btn btn-primary btn-rounded z-depth-0 "
+                                                style="width: 100%; margin: auto;"
+                                                data-mdb-ripple-color="dark">Regsiter</button></a>
+                                    </div>
+                                </form>
+                                <!-- Form -->
                         </div>
-                    </form>
-                    <!-- Form -->
+                    </div>
                 </div>
             </div>
     </div>
+
+    
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

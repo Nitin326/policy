@@ -122,5 +122,33 @@ app.post('/update',(req,res,next) =>{
 })
 
 
+app.post('/find', (req, res) => {
+
+    var fpolicynumber = req.body.policynumber;
+    var fphone = req.body.phone;
+    
+
+    if (fpolicynumber != '' && fphone != '') {
+        var filterParameter = {
+            $and: [{policynumber: fpolicynumber},{ phone: fphone  }]
+        }
+    }
+    else {
+        var filterParameter = {};
+    }
+
+    var policyFilter = Policy.find(filterParameter);
+    policyFilter.find({}, function (err, data) {
+        if (!err) {
+            res.render('Search', { title: "Teachers Records", records: data});
+        } else {
+            throw err;
+        }
+    }).clone().catch(function (err) { console.log(err) })
+
+})
+
+
+
 
 app.listen(`${port}`, () => console.log(`App running at ${port}`));
