@@ -71,7 +71,14 @@
             color: rgba(255, 255, 255, 0.712);
             margin-bottom: 40px;
         }
-        .table{
+
+        @media (max-width: 980px) {
+            .datashow_container {
+                overflow-x: scroll;
+            }
+        }
+
+        .table {
             width: 95% !important;
         }
     </style>
@@ -111,66 +118,69 @@
             </div>
         </div>
         <!-- ================ End of Filter Form =============== -->
-        <table class="table table-hover mt-5 mb-5 mx-auto">
-                    <thead class="text-center" style="background-color: rgb(210, 169, 248);">
-                        <% if(records.length>0){ %>
+        <div class="datashow_container">
+
+            <table class="table table-hover mt-5 mb-5 mx-auto">
+                <thead class="text-center" style="background-color: rgb(210, 169, 248);">
+                    <% if(records.length>0){ %>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Father Name</th>
+                            <th scope="col">Mother Name</th>
+                            <th scope="col">Date of Birth</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Policy Number</th>
+                            <th scope="col">Policy Date</th>
+                            <th scope="col">Curent Address</th>
+                            <th scope="col">Permanent Address</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                        <% } %>
+                </thead>
+                <tbody class="text-center mx-auto">
+                    <% if(records.length>0){ %>
+                        <% records.forEach(function(info){ %>
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Father Name</th>
-                                <th scope="col">Mother Name</th>
-                                <th scope="col">Date of Birth</th>
-                                <th scope="col">Phone Number</th>
-                                <th scope="col">Policy Number</th>
-                                <th scope="col">Policy Date</th>
-                                <th scope="col">Curent Address</th>
-                                <th scope="col">Permanent Address</th>
-                                <th scope="col">Edit</th>
-                                <th scope="col">Delete</th>
+                                <td>
+                                    <%= info.uname %>
+                                </td>
+                                <td>
+                                    <%= info.fname %>
+                                </td>
+                                <td>
+                                    <%= info.mname %>
+                                </td>
+                                <td>
+                                    <%= info.dob %>
+                                </td>
+                                <td>
+                                    <%= info.phone %>
+                                </td>
+                                <td>
+                                    <%= info.policynumber %>
+                                </td>
+                                <td>
+                                    <%= info.policydate %>
+                                </td>
+                                <td>
+                                    <%= info.caddress %>
+                                </td>
+                                <td>
+                                    <%= info.paddress %>
+                                </td>
+                                <td><a href="/edit/<%= info._id %>" style="color: rgb(12, 12, 12);"><i
+                                            class="fa fa-edit" aria-hidden="true"></i></a></td>
+                                <td><a href="/delete/<%= info._id %>" style="color: rgb(12, 12, 12);"><i
+                                            class="fa fa-trash" aria-hidden="true"></i></a></td>
                             </tr>
-                            <% } %>
-                    </thead>
-                    <tbody class="text-center mx-auto">
-                        <% if(records.length>0){ %>
-                            <% records.forEach(function(info){ %>
-                                <tr>
-                                    <td>
-                                        <%= info.uname %>
-                                    </td>
-                                    <td>
-                                        <%= info.fname %>
-                                    </td>
-                                    <td>
-                                        <%= info.mname %>
-                                    </td>
-                                    <td>
-                                        <%= info.dob %>
-                                    </td>
-                                    <td>
-                                        <%= info.phone %>
-                                    </td>
-                                    <td>
-                                        <%= info.policynumber %>
-                                    </td>
-                                    <td>
-                                        <%= info.policydate %>
-                                    </td>
-                                    <td>
-                                        <%= info.caddress %>
-                                    </td>
-                                    <td>
-                                        <%= info.paddress %>
-                                    </td>
-                                    <td><a href="/edit/<%= info._id %>" style="color: rgb(12, 12, 12);"><i
-                                                class="fa fa-edit" aria-hidden="true"></i></a></td>
-                                    <td><a href="/delete/<%= info._id %>" style="color: rgb(12, 12, 12);"><i
-                                                class="fa fa-trash" aria-hidden="true"></i></a></td>
-                                </tr>
-                                <% })} else{ %>
-                                    <h3 style="text-align: right;"><i class='fas fa-frown'></i> Sorry No Result Found
-                                    </h3>
-                                    <% } %>
-                    </tbody>
-        </table>
+                            <% })} else{ %>
+                                <h3 style="text-align: right;"><i class='fas fa-frown'></i> Sorry No Result Found
+                                </h3>
+                                <% } %>
+                </tbody>
+            </table>
+        </div>
 
         <!-- JQuery -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
