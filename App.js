@@ -1,11 +1,31 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const mongoose= require('mongoose');
-require("dotenv").config();
 const bodyParser = require('body-parser');
+
+//env 
+require("dotenv").config();
 const port = process.env.PORT || 3000;
 const db = process.env.DB;
+
+// Path
+app.use('/public', express.static(path.join(__dirname, 'public')))
+
+// Schema
 const Policy = require('./Policy')
+
+const multer  = require('multer');
+
+const storage = multer.diskStorage({
+    destination:"./public/uploads/",
+    filename: (req,image,cb) => {
+        console.log(image);
+        cb(null,Date.now() + path.extname(image.originalname))
+    }
+})
+
+const upload = multer({ storage: storage }).single('image');
 
 // set up the view engine
 app.set('view engine', 'ejs');
@@ -25,20 +45,22 @@ app.get('/', (req, res) => {
     res.render('Register');
 })
 
-app.post('/', (req, res) => {
-    const { uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress } = req.body;
+app.post('/',upload,(req, res) => {
+    const { uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress} = req.body;
+    const image = req.file.filename;
 
     let errors = [];
 
-    if (!uname || !fname || !mname || !dob || !phone || !policynumber || !policydate || !caddress || !paddress) {
+    if (!uname || !fname || !mname || !dob || !phone || !policynumber || !policydate || !caddress || !paddress || !image) {
         errors.push({ msg: 'please fill the all fields' });
     }
 
-    if (errors.length > 0) {
+
+    if (errors.length > 0) { 
         console.log(errors);
         res.render('register', {
             errors,
-            uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress
+            uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress,image
         })
     }
     else {
@@ -48,15 +70,15 @@ app.post('/', (req, res) => {
                 if (user) {
                     //user exist
                     errors.push({ msg: 'Policy is already Registered' })
-                    console.log(errors)
+                    console.log(errors);
                     res.render('register', {
                         errors,
-                        uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress
+                        uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress,image
                     })    
                 }
                 else {
                     const newPolicy = new Policy({
-                        uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress
+                        uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress,image
                     });
                     newPolicy.save();
                     console.log('Policy Saved');

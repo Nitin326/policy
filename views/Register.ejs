@@ -56,7 +56,7 @@
                             <%- include('./partials/messages') %>
 
                                 <!-- Form -->
-                                <form method="post" class="text-center" style="color: #757575;" action="/">
+                                <form method="post" class="text-center" style="color: #757575;" action="/" enctype="multipart/form-data">
 
                                     <!-- Name -->
                                     <div class="md-form">
@@ -113,10 +113,10 @@
                                         <label for="paddress">Permanent Address</label>
                                     </div>
                                     <!-- Permanent Address -->
-                                    <!-- <div class="md-form">
-                            <input type="file" id="materialLoginFormImage" class="form-control"
-                             style="background-color: rgb(243, 243, 252); padding: 5px;">
-                        </div> -->
+                                    <div class="md-form">
+                                        <input type="file" id="image" name="image" class="form-control"
+                                            style="background-color: rgb(243, 243, 252); padding: 5px;">
+                                    </div>
 
                                     <!-- Regsiter button -->
                                     <div class="mx-auto">

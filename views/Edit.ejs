@@ -58,61 +58,57 @@
                         <form method="post" class="text-center" style="color: #757575;" action="/update">
                             <input type="hidden" name="id" value="<%= list._id %>" <!-- Name -->
                             <div class="md-form">
-                                <input type="text" id="uname" name="uname" class="form-control"
+                                <input type="text" id="uname" name="uname" class="form-control" required
                                     value="<%= list.uname %>">
                                 <label for="uname">Name</label>
                             </div>
                             <!-- Father Name -->
                             <div class="md-form">
-                                <input type="text" id="fname" name="fname" class="form-control"
+                                <input type="text" id="fname" name="fname" class="form-control" required
                                     value="<%= list.fname %>">
                                 <label for="fname">Father Name</label>
                             </div>
                             <!--Mother Name-->
                             <div class="md-form">
-                                <input type="text" id="mname" name="mname" class="form-control"
+                                <input type="text" id="mname" name="mname" class="form-control" required
                                     value="<%= list.mname %>">
                                 <label for="mname">Mother Name</label>
                             </div>
                             <!-- Date of Birth -->
                             <div class="md-form">
-                                <input type="text" id="dob" name="dob" class="form-control" value="<%= list.dob %>">
+                                <input type="text" id="dob" name="dob" class="form-control" required value="<%= list.dob %>">
                                 <label for="dob">Date of Birth</label>
                             </div>
                             <!-- Phone Number -->
                             <div class="md-form">
-                                <input type="text" id="phone" name="phone" class="form-control"
+                                <input type="text" id="phone" name="phone" class="form-control" required
                                     value="<%= list.phone %>">
                                 <label for="phone">Phone Number</label>
                             </div>
                             <!-- Policy Number -->
                             <div class="md-form">
-                                <input type="text" id="policynumber" name="policynumber" class="form-control"
+                                <input type="text" id="policynumber" name="policynumber" class="form-control" required
                                     value="<%= list.policynumber %>">
                                 <label for="policynumber">Policy Number</label>
                             </div>
                             <!-- Policy Date -->
                             <div class="md-form">
-                                <input type="text" id="policydate" name="policydate" class="form-control"
+                                <input type="text" id="policydate" name="policydate" class="form-control" required
                                     value="<%= list.policydate %>">
                                 <label for="policydate">Policy Date</label>
                             </div>
                             <!-- Current Address -->
                             <div class="md-form">
-                                <input type="text" id="caddress" name="caddress" class="form-control"
+                                <input type="text" id="caddress" name="caddress" class="form-control" required
                                     value="<%= list.caddress %>">
                                 <label for="caddress">Current Address</label>
                             </div>
                             <!-- Permanent Address -->
                             <div class="md-form">
-                                <input type="text" id="paddress" name="paddress" class="form-control"
+                                <input type="text" id="paddress" name="paddress" class="form-control" required
                                     value="<%= list.paddress %>">
                                 <label for="paddress">Permanent Address</label>
                             </div>
-                            <!-- Permanent Address -->
-                            <!-- <div class="md-form">
-                            <input type="file" id="materialLoginFormImage" class="form-control" style="background-color: rgb(243, 243, 252); padding: 5px;">
-                        </div> -->
 
                             <!-- Regsiter button -->
                             <div class="mx-auto">
