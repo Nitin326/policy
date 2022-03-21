@@ -3,6 +3,8 @@ const app = express();
 const path = require('path');
 const mongoose= require('mongoose');
 const bodyParser = require('body-parser');
+// Schema
+const Policy = require('./Policy')
 
 //env 
 require("dotenv").config();
@@ -12,20 +14,19 @@ const db = process.env.DB;
 // Path
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
-// Schema
-const Policy = require('./Policy')
-
 const multer  = require('multer');
 
-const storage = multer.diskStorage({
-    destination:"./public/uploads/",
-    filename: (req,image,cb) => {
-        console.log(image);
-        cb(null,Date.now() + path.extname(image.originalname))
-    }
-})
+const Storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "./public/uploads/");
+    },
+    filename: (req, file, cb) => {
+      console.log(file);
+      cb(null,file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+    },
+  });
 
-const upload = multer({ storage: storage }).single('image');
+const upload = multer({ storage:Storage }).single('file');
 
 // set up the view engine
 app.set('view engine', 'ejs');
@@ -45,13 +46,13 @@ app.get('/', (req, res) => {
     res.render('Register');
 })
 
-app.post('/',upload,(req, res) => {
+app.post('/',upload,(req, res,next) => {
     const { uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress} = req.body;
     const image = req.file.filename;
-
+    console.log(image);
     let errors = [];
 
-    if (!uname || !fname || !mname || !dob || !phone || !policynumber || !policydate || !caddress || !paddress || !image) {
+    if (!uname || !fname || !mname || !dob || !phone || !policynumber || !policydate || !caddress || !paddress ) {
         errors.push({ msg: 'please fill the all fields' });
     }
 
@@ -134,12 +135,13 @@ app.post('/update',(req,res,next) =>{
         caddress:req.body.caddress,
         paddress:req.body.paddress,
     });
+    console.log(update);
     update.exec(function(err,data){
         if(err){
             console.log(err);
             return;
         }
-        return res.redirect('/search')
+        return res.redirect('/search');
     })
 })
 
@@ -150,7 +152,7 @@ app.post('/find', (req, res) => {
     var fphone = req.body.phone;
     
 
-    if (fpolicynumber != '' && fphone != '') {
+    if (fpolicynumber != '' || fphone != '') {
         var filterParameter = {
             $and: [{policynumber: fpolicynumber},{ phone: fphone  }]
         }
