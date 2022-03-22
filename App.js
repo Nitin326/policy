@@ -52,9 +52,9 @@ app.post('/',upload,(req, res,next) => {
     console.log(image);
     let errors = [];
 
-    if (!uname || !fname || !mname || !dob || !phone || !policynumber || !policydate || !caddress || !paddress ) {
-        errors.push({ msg: 'please fill the all fields' });
-    }
+    // if (!uname || !fname || !mname || !dob || !phone || !policynumber || !policydate || !caddress || !paddress ) {
+    //     errors.push({ msg: 'please fill the all fields' });
+    // }
 
 
     if (errors.length > 0) { 
@@ -71,7 +71,6 @@ app.post('/',upload,(req, res,next) => {
                 if (user) {
                     //user exist
                     errors.push({ msg: 'Policy is already Registered' })
-                    console.log(errors);
                     res.render('register', {
                         errors,
                         uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress
@@ -135,7 +134,6 @@ app.post('/update',(req,res,next) =>{
         caddress:req.body.caddress,
         paddress:req.body.paddress,
     });
-    console.log(update);
     update.exec(function(err,data){
         if(err){
             console.log(err);
