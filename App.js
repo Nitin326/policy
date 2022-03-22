@@ -61,7 +61,7 @@ app.post('/',upload,(req, res,next) => {
         console.log(errors);
         res.render('register', {
             errors,
-            uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress,image
+            uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress
         })
     }
     else {
@@ -74,7 +74,7 @@ app.post('/',upload,(req, res,next) => {
                     console.log(errors);
                     res.render('register', {
                         errors,
-                        uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress,image
+                        uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress
                     })    
                 }
                 else {
