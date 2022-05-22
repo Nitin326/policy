@@ -6,6 +6,10 @@ const bodyParser = require('body-parser');
 // Schema
 const Policy = require('./Policy')
 
+const fileUpload = require('express-fileupload')
+// const multer  = require('multer');
+const cloudinary = require('cloudinary').v2
+
 //env 
 require("dotenv").config();
 const port = process.env.PORT || 3000;
@@ -14,19 +18,29 @@ const db = process.env.DB;
 // Path
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
-const multer  = require('multer');
 
-const Storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, "./public/uploads/");
-    },
-    filename: (req, file, cb) => {
-      console.log(file);
-      cb(null,file.fieldname + "_" + Date.now() + path.extname(file.originalname));
-    },
+app.use(fileUpload({
+    useTempFiles : true
+}));
+
+cloudinary.config({ 
+    cloud_name: 'dogfnkzh0', 
+    api_key: '772961185443621', 
+    api_secret: 'quNK-ckdwMsYCvgeud8AUC1RE3A',
+    secure: true
   });
 
-const upload = multer({ storage:Storage }).single('file');
+// const Storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//       cb(null, "./public/uploads/");
+//     },
+//     filename: (req, file, cb) => {
+//       console.log(file);
+//       cb(null, new Date().toISOString() + '-' + file.originalname);
+//     },
+//   });
+
+// const upload = multer({ storage:Storage }).single('file');
 
 // set up the view engine
 app.set('view engine', 'ejs');
@@ -46,22 +60,27 @@ app.get('/', (req, res) => {
     res.render('Register');
 })
 
-app.post('/',upload,(req, res,next) => {
-    const { uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress} = req.body;
-    const image = req.file.filename;
-    console.log(image);
-    let errors = [];
+app.post('/',(req, res,next) => {
+    const file = req.files.photo;
+    cloudinary.uploader.upload(file.tempFilePath, (err,result) => {
+       console.log(result);
+       const { uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress} = req.body;
+       const image = result.url;
+       let errors = [];
 
-    // if (!uname || !fname || !mname || !dob || !phone || !policynumber || !policydate || !caddress || !paddress ) {
-    //     errors.push({ msg: 'please fill the all fields' });
-    // }
+    console.log(errors);
 
+    if (!uname || !fname || !mname || !dob || !phone || !policynumber || !policydate || !caddress || !paddress || !image) {
+        errors.push({ msg: 'please fill the all fields' });
+    }
 
+    console.log(errors);
+    
     if (errors.length > 0) { 
         console.log(errors);
         res.render('register', {
             errors,
-            uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress
+            uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress,image
         })
     }
     else {
@@ -73,7 +92,7 @@ app.post('/',upload,(req, res,next) => {
                     errors.push({ msg: 'Policy is already Registered' })
                     res.render('register', {
                         errors,
-                        uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress
+                        uname, fname, mname, dob, phone, policynumber, policydate, caddress, paddress,image
                     })    
                 }
                 else {
@@ -86,6 +105,7 @@ app.post('/',upload,(req, res,next) => {
                 }
             })
     }
+    });
 })
 
 app.get('/search', (req, res) => {
